@@ -1,0 +1,11 @@
+FROM node:14.6
+
+WORKDIR /app
+
+COPY ./package* ./
+
+RUN npm ci
+
+COPY ./ /app
+
+CMD npm start

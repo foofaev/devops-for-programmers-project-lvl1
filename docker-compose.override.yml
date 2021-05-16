@@ -1,0 +1,28 @@
+---
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    command: npm start
+
+  caddy:
+    image: caddy:2.4.0
+    ports:
+      - 80:80
+      - 443:443
+      - 2019:2019
+    volumes:
+      - ./services/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - devops-lvl1-network
+    depends_on:
+      - app
+
+volumes:
+  caddy_data:
+  caddy_config:
