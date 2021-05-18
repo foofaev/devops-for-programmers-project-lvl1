@@ -47,6 +47,7 @@ compose-bash:
 # CI
 ###################################################################################################
 compose-ci-up:
+	cp -n .env.ci .env || true
 	docker-compose up --build --abort-on-container-exit
 
 compose-ci-lint:
