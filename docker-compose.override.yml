@@ -6,6 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.production
+    env_file: ./.env.ci
     command: npm start
 
   caddy:
