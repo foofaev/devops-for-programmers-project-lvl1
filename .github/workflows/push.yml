@@ -14,6 +14,7 @@ jobs:
       - name: Test
         run: make compose-ci-test
   docker:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

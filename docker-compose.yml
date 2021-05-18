@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    env_file: ./.env
+    env_file: ./.env.ci
     depends_on:
       - db
     networks:
@@ -15,10 +15,11 @@ services:
       - 8080:8080
     volumes:
       - .:/app/
+      - ./.env.ci:/app/.env
     command: npm test
 
   db:
-    env_file: ./.env
+    env_file: ./.env.ci
     image: postgres:12.3-alpine
     ports:
       - 5432
