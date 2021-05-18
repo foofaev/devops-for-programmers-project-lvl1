@@ -47,7 +47,7 @@ compose-bash:
 # CI
 ###################################################################################################
 compose-ci-up:
-	docker-compose up --build -d --abort-on-container-exit
+	docker-compose up --build --abort-on-container-exit
 
 compose-ci-lint:
 	docker-compose exec -T app make lint
