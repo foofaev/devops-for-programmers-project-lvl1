@@ -21,6 +21,9 @@ lint:
 test:
 	npm test -s
 
+hadolint:
+	 docker run --rm -i hadolint/hadolint hadolint - < $(dockerfilepath)
+
 ###################################################################################################
 # Dev
 ###################################################################################################
@@ -48,7 +51,7 @@ compose-bash:
 ###################################################################################################
 compose-ci-up:
 	cp -n .env.ci .env || true
-	docker-compose up --build -d
+	docker-compose up --build
 
 compose-ci-lint:
 	docker-compose exec -T app make lint
