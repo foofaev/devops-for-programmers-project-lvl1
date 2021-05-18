@@ -48,7 +48,7 @@ compose-bash:
 ###################################################################################################
 compose-ci-up:
 	cp -n .env.ci .env || true
-	docker-compose up --build
+	docker-compose up --build --abort-on-container-exit
 
 compose-ci-lint:
 	docker-compose exec -T app make lint
