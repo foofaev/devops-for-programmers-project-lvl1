@@ -49,7 +49,7 @@ compose-bash:
 # CI
 ###################################################################################################
 compose-ci-up:
-	docker-compose up --build
+	docker-compose up --build -d
 
 compose-ci-lint:
 	docker-compose exec -T app make lint
