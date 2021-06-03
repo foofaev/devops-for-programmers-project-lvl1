@@ -7,6 +7,10 @@ services:
       context: .
       dockerfile: Dockerfile
     env_file: ./.env.ci
+    environment:
+      POSTGRES_DB: ${NODOS_DB_HOSTNAME}
+      POSTGRES_USER: ${NODOS_DB_USERNAME}
+      POSTGRES_PASSWORD: ${NODOS_DB_PASSWORD}
     depends_on:
       - db
     networks:

@@ -13,7 +13,7 @@ build:
 	npm run build
 
 prepare:
-	cp -n .env.ci .env || true
+	cp -n .env.ci .env
 
 lint:
 	npx eslint .
@@ -22,13 +22,12 @@ test:
 	npm test -s
 
 hadolint:
-	 docker run --rm -i hadolint/hadolint hadolint - < $(dockerfilepath)
+	docker run --rm -i hadolint/hadolint hadolint - < $(dockerfilepath)
 
 ###################################################################################################
 # Dev
 ###################################################################################################
 compose:
-	cp -n .env.ci .env || true
 	docker-compose -f docker-compose.yml down -v
 	docker-compose -f docker-compose.yml up -d
 
@@ -41,16 +40,15 @@ compose-logs-db:
 	docker-compose -f docker-compose.yml logs --follow db
 
 compose-psql:
-	 docker-compose -f docker-compose.yml exec db psql postgres -U postgres
+	docker-compose -f docker-compose.yml exec db psql postgres -U postgres
 
 compose-bash:
-	 docker-compose -f docker-compose.yml exec app bash
+	docker-compose -f docker-compose.yml exec app bash
 
 ###################################################################################################
 # CI
 ###################################################################################################
 compose-ci-up:
-	cp -n .env.ci .env || true
 	docker-compose up --build
 
 compose-ci-lint:
