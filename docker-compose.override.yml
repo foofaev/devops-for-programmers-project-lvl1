@@ -5,8 +5,12 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile.production
+      dockerfile: Dockerfile
     command: npm start
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/app
 
   caddy:
     image: caddy:2.4.0
@@ -18,8 +22,6 @@ services:
       - ./services/caddy/Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
-    networks:
-      - devops-lvl1-network
     depends_on:
       - app
 

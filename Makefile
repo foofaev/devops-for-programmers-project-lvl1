@@ -28,31 +28,25 @@ hadolint:
 # Dev
 ###################################################################################################
 compose:
-	docker-compose -f docker-compose.yml down -v
-	docker-compose -f docker-compose.yml up -d
+	docker-compose down -v
+	docker-compose up --build -d
 
 compose-down:
-	docker-compose -f docker-compose.yml down
+	docker-compose down
 
 compose-logs-app:
-	docker-compose -f docker-compose.yml logs --follow app
+	docker-compose logs --follow app
 compose-logs-db:
-	docker-compose -f docker-compose.yml logs --follow db
+	docker-compose logs --follow db
 
 compose-psql:
-	docker-compose -f docker-compose.yml exec db psql postgres -U postgres
+	docker-compose exec db psql postgres -U postgres
 
 compose-bash:
-	docker-compose -f docker-compose.yml exec app bash
+	docker-compose exec app bash
 
 ###################################################################################################
 # CI
 ###################################################################################################
-compose-ci-up:
-	docker-compose up --build
-
-compose-ci-lint:
-	docker-compose exec -T app make lint
-
-compose-ci-test:
-	docker-compose exec -T app make test
+compose-ci:
+	docker-compose -f docker-compose.yml up --build

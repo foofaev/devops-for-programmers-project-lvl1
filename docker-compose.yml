@@ -5,7 +5,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.production
     env_file: ./.env.ci
     environment:
       POSTGRES_DB: ${NODOS_DB_HOSTNAME}
@@ -13,24 +13,13 @@ services:
       POSTGRES_PASSWORD: ${NODOS_DB_PASSWORD}
     depends_on:
       - db
-    networks:
-      - devops-lvl1-network
-    ports:
-      - 8080:8080
     command: npm test
 
   db:
     env_file: ./.env.ci
     image: postgres:12.3-alpine
-    ports:
-      - 5432
     volumes:
       - devops-lvl1-pg-volume:/var/lib/postgresql/data
-    networks:
-      - devops-lvl1-network
-
-networks:
-  devops-lvl1-network:
 
 volumes:
   devops-lvl1-pg-volume:
